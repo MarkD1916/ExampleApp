@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.core.ui.NavigationLayoutView
 import com.example.core.ui.ScaleDirectionType
+import com.example.core.ui.UiConstants.CLICKABLE_SCALE_DEGREE
 import com.example.core.ui.onClickWithScaleAnimate
 
 private const val ARG_PARAM1 = "param1"
@@ -33,7 +34,7 @@ class MainPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val button = getView()?.findViewById<NavigationLayoutView>(R.id.nav_button)
-        button?.onClickWithScaleAnimate(scaleType = ScaleDirectionType.DOWN) {
+        button?.onClickWithScaleAnimate(scaleDegree = CLICKABLE_SCALE_DEGREE) {
 
         }
     }

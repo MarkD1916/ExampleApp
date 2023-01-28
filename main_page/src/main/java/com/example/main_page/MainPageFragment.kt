@@ -6,14 +6,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.core.ui.NavigationLayoutView
-import com.example.core.ui.ScaleDirectionType
 import com.example.core.ui.UiConstants.CLICKABLE_SCALE_DEGREE
 import com.example.core.ui.onClickWithScaleAnimate
+import com.example.navigation.InstanceOfFragment
+import com.example.navigation.NavigationManager
+import com.example.navigation.Routes
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class MainPageFragment : Fragment() {
+interface MainScreenInterface : InstanceOfFragment {
+    companion object {
+        @JvmStatic
+        fun newInstance() = MainPageFragment()
+    }
+}
+
+class MainPageFragment : Fragment(), MainScreenInterface {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -35,20 +44,9 @@ class MainPageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val button = getView()?.findViewById<NavigationLayoutView>(R.id.nav_button)
         button?.onClickWithScaleAnimate(scaleDegree = CLICKABLE_SCALE_DEGREE) {
-
-        }
-    }
-
-    companion object {
-        const val TAG = "MainPageFragment"
-
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MainPageFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+            requireActivity().apply {
+                (this as NavigationManager).goTo(Routes.AUTH_SCREEN)
             }
+        }
     }
 }

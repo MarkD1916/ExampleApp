@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity(), NavigationManager {
     }
 
     override fun goTo(route: Routes) {
-        val fragment = com.example.processor.NavigationEndPoint.getFragmentByRoute(route)
+        val fragment = NavigationEndPoint.getFragmentByRoute(route)
         supportFragmentManager
             .beginTransaction()
             .replace(R.id.fragment_container_main_activity, fragment)
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity(), NavigationManager {
     }
 
     override fun initFragment() {
-        val fragment = com.example.processor.NavigationEndPoint.getFragmentByRoute(MAIN_PAGE_ROUTE)
+        val fragment = NavigationEndPoint.getFragmentByRoute(MAIN_PAGE_ROUTE)
         supportFragmentManager
             .beginTransaction()
             .add(R.id.fragment_container_main_activity, fragment)

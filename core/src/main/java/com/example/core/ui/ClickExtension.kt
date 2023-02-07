@@ -6,6 +6,8 @@ import android.animation.PropertyValuesHolder
 import android.annotation.SuppressLint
 import android.view.MotionEvent
 import android.view.View
+import com.example.core.ui.views.AnimatedClickableView
+import com.example.core.ui.views.AnimationListenerImpl
 
 enum class ScaleDirectionType {
     UP, DOWN

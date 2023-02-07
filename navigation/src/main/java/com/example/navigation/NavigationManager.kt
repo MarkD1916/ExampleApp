@@ -1,11 +1,11 @@
 package com.example.navigation
 
-import androidx.fragment.app.Fragment
-
 interface NavigationManager {
 
-    fun goTo(route: Routes)
-
+    fun replaceFragment(route: Routes)
+    fun addFragment(route: Routes)
+    fun goToAppInitialScreen()
+    fun goToFeatureInitialScreen(featureInitialScreen: Routes)
     fun initFragment()
 
 }

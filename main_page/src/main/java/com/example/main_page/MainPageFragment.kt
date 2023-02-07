@@ -45,7 +45,7 @@ class MainPageFragment : Fragment(), MainScreenInterface {
         val button = getView()?.findViewById<NavigationLayoutView>(R.id.nav_button)
         button?.onClickWithScaleAnimate(scaleDegree = CLICKABLE_SCALE_DEGREE) {
             requireActivity().apply {
-                (this as NavigationManager).goTo(Routes.AUTH_SCREEN)
+                (this as NavigationManager).goToFeatureInitialScreen(Routes.AUTH_SCREEN)
             }
         }
     }

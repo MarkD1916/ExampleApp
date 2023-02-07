@@ -11,10 +11,10 @@ class MainActivity : AppCompatActivity(), NavigationManager {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        if (savedInstanceState==null) initFragment()
+        if (savedInstanceState == null) initFragment()
     }
 
-    override fun goTo(route: Routes) {
+    override fun replaceFragment(route: Routes) {
         val fragment = NavigationEndPoint.getFragmentByRoute(route)
         supportFragmentManager
             .beginTransaction()
@@ -27,6 +27,32 @@ class MainActivity : AppCompatActivity(), NavigationManager {
         supportFragmentManager
             .beginTransaction()
             .add(R.id.fragment_container_main_activity, fragment)
+            .commit()
+    }
+
+    override fun addFragment(route: Routes) {
+        val fragment = NavigationEndPoint.getFragmentByRoute(route)
+        supportFragmentManager
+            .beginTransaction()
+            .addToBackStack("tag")
+            .replace(R.id.fragment_container_main_activity, fragment)
+            .commit()
+
+    }
+
+    override fun goToAppInitialScreen() {
+        val fragment = NavigationEndPoint.getFragmentByRoute(MAIN_PAGE_ROUTE)
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container_main_activity, fragment)
+            .commit()
+    }
+
+    override fun goToFeatureInitialScreen(featureInitialScreen: Routes) {
+        val fragment = NavigationEndPoint.getFragmentByRoute(featureInitialScreen)
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container_main_activity, fragment)
             .commit()
     }
 }

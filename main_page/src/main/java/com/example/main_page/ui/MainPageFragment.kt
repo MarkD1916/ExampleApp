@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.example.core.navigationManager
 import com.example.core.ui.NavigationLayoutView
 import com.example.core.ui.UiConstants.CLICKABLE_SCALE_DEGREE
 import com.example.core.ui.onClickWithScaleAnimate
+import com.example.feature_blocker.ui.RestrictionBottomSheet
 import com.example.main_page.MainPageAction
 import com.example.main_page.MainPageContract
 import com.example.main_page.R
@@ -35,13 +35,21 @@ class MainPageFragment : MainPageContract(), MainScreenInterface, MainPageAction
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        block(isFeatureActive)
         val button = getView()?.findViewById<NavigationLayoutView>(R.id.nav_button)
         button?.onClickWithScaleAnimate(scaleDegree = CLICKABLE_SCALE_DEGREE) {
             goToAuthFeature()
         }
     }
 
+    override fun block(isFeatureActive: Boolean) {
+        if (!isFeatureActive) {
+            val restrictionBottomSheet = RestrictionBottomSheet()
+            restrictionBottomSheet.show(this.childFragmentManager, RestrictionBottomSheet.TAG)
+        }
+    }
+
     override fun goToAuthFeature() =
-        navigationManager().goToFeatureInitialScreen(Routes.AUTH_SCREEN)
+        navigationManager().addFragment(Routes.AUTH_SCREEN)
 
 }

@@ -6,6 +6,7 @@
       <module name="CustomPagingWithSomeDataSource.auth_screen" target="11" />
       <module name="CustomPagingWithSomeDataSource.cordinator" target="11" />
       <module name="CustomPagingWithSomeDataSource.core" target="11" />
+      <module name="CustomPagingWithSomeDataSource.feature_blocker" target="11" />
       <module name="CustomPagingWithSomeDataSource.main_page" target="11" />
       <module name="CustomPagingWithSomeDataSource.navigation" target="11" />
       <module name="CustomPagingWithSomeDataSource.network" target="11" />

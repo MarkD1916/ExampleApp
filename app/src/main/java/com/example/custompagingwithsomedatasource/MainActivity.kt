@@ -2,6 +2,7 @@ package com.example.custompagingwithsomedatasource
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.FragmentManager
 import com.example.processor.NavigationEndPoint
 import com.example.navigation.NavigationManager
 import com.example.navigation.Routes
@@ -55,4 +56,7 @@ class MainActivity : AppCompatActivity(), NavigationManager {
             .replace(R.id.fragment_container_main_activity, fragment)
             .commit()
     }
+
+    override fun goBack() = supportFragmentManager.popBackStack()
+
 }

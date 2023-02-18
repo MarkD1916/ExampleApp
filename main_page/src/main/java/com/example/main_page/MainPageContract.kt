@@ -1,6 +1,7 @@
 package com.example.main_page
 
 import androidx.fragment.app.Fragment
+import com.example.core.FeatureActive
 
 interface MainPageAction {
 
@@ -11,6 +12,8 @@ interface MainPageAction {
 
 abstract class MainPageContract : Fragment() {
 
-    val isFeatureActive: Boolean = true
+    val isFeatureActive: Boolean = FeatureActive.IS_MAIN_PAGE_FEATURE_ACTIVE
+
+    abstract fun block(isFeatureActive: Boolean)
 
 }

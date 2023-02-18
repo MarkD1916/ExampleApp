@@ -2,7 +2,9 @@ package com.example.core.di
 
 import android.app.Application
 import android.content.Context
+import androidx.activity.ComponentActivity
 import com.example.core.DictionaryDatabase
+import dagger.BindsInstance
 import dagger.Component
 import retrofit2.Retrofit
 import javax.inject.Singleton
@@ -14,4 +16,5 @@ interface CoreComponent {
     fun applicationContext(): Application
     fun getRetrofit(): Retrofit
     fun getDb(): DictionaryDatabase
+
 }

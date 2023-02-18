@@ -1,9 +1,7 @@
 package com.example.custompagingwithsomedatasource
 
 import android.app.Application
-import com.example.core.di.CoreComponent
-import com.example.core.di.CoreComponentProvider
-import com.example.core.di.DaggerCoreComponent
+import com.example.core.di.*
 
 class Application : Application(), CoreComponentProvider {
 
@@ -13,9 +11,16 @@ class Application : Application(), CoreComponentProvider {
         if (!this::coreComponent.isInitialized) {
             coreComponent = DaggerCoreComponent
                 .builder()
+                .appModule(AppModule(this))
+                .coreModule(CoreModule())
                 .build()
         }
         return coreComponent
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        provideCoreComponent()
     }
 
 }

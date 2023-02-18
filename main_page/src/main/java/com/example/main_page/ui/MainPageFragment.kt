@@ -9,6 +9,8 @@ import com.example.core.navigationManager
 import com.example.core.ui.NavigationLayoutView
 import com.example.core.ui.UiConstants.CLICKABLE_SCALE_DEGREE
 import com.example.core.ui.onClickWithScaleAnimate
+import com.example.main_page.MainPageAction
+import com.example.main_page.MainPageContract
 import com.example.main_page.R
 import com.example.navigation.InstanceOfFragment
 import com.example.navigation.Routes
@@ -20,7 +22,7 @@ interface MainScreenInterface : InstanceOfFragment {
     }
 }
 
-class MainPageFragment : Fragment(), MainScreenInterface {
+class MainPageFragment : MainPageContract(), MainScreenInterface, MainPageAction {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,8 +37,11 @@ class MainPageFragment : Fragment(), MainScreenInterface {
         super.onViewCreated(view, savedInstanceState)
         val button = getView()?.findViewById<NavigationLayoutView>(R.id.nav_button)
         button?.onClickWithScaleAnimate(scaleDegree = CLICKABLE_SCALE_DEGREE) {
-            navigationManager().goToFeatureInitialScreen(Routes.AUTH_SCREEN)
+            goToAuthFeature()
         }
     }
+
+    override fun goToAuthFeature() =
+        navigationManager().goToFeatureInitialScreen(Routes.AUTH_SCREEN)
 
 }

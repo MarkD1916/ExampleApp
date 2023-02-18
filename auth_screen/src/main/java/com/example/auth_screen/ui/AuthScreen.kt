@@ -1,13 +1,12 @@
 package com.example.auth_screen.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.auth_screen.AuthPageContract
 import com.example.auth_screen.R
-import com.example.feature_blocker.ui.RestrictionBottomSheet
+import com.example.feature_blocker.RestrictionFeatureContract
 import com.example.navigation.InstanceOfFragment
 
 interface AuthScreenInterface : InstanceOfFragment {
@@ -35,8 +34,9 @@ class AuthScreen : AuthPageContract(), AuthScreenInterface {
 
     override fun block(isFeatureActive: Boolean) {
         if (!isFeatureActive) {
-            val restrictionBottomSheet = RestrictionBottomSheet()
-            restrictionBottomSheet.show(this.childFragmentManager, RestrictionBottomSheet.TAG)
+            val restrictionBottomSheet = RestrictionFeatureContract.newInstance()
+            restrictionBottomSheet.show(this.childFragmentManager, RestrictionFeatureContract.TAG)
         }
     }
+
 }

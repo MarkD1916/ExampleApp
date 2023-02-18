@@ -8,7 +8,7 @@ interface NavigationManager {
     fun goToFeatureInitialScreen(featureInitialScreen: Routes)
     fun initFragment()
     fun goBack()
-
+    fun closeApp()
 }
 
 interface InstanceOfFragment

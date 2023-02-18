@@ -8,7 +8,7 @@ import com.example.core.navigationManager
 import com.example.core.ui.NavigationLayoutView
 import com.example.core.ui.UiConstants.CLICKABLE_SCALE_DEGREE
 import com.example.core.ui.onClickWithScaleAnimate
-import com.example.feature_blocker.ui.RestrictionBottomSheet
+import com.example.feature_blocker.RestrictionFeatureContract
 import com.example.main_page.MainPageAction
 import com.example.main_page.MainPageContract
 import com.example.main_page.R
@@ -44,8 +44,9 @@ class MainPageFragment : MainPageContract(), MainScreenInterface, MainPageAction
 
     override fun block(isFeatureActive: Boolean) {
         if (!isFeatureActive) {
-            val restrictionBottomSheet = RestrictionBottomSheet()
-            restrictionBottomSheet.show(this.childFragmentManager, RestrictionBottomSheet.TAG)
+            val restrictionBottomSheet = RestrictionFeatureContract.newInstance()
+            RestrictionFeatureContract.onDismissAction = { navigationManager().closeApp() }
+            restrictionBottomSheet.show(this.childFragmentManager, RestrictionFeatureContract.TAG)
         }
     }
 

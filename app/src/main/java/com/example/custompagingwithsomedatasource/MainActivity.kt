@@ -59,4 +59,6 @@ class MainActivity : AppCompatActivity(), NavigationManager {
 
     override fun goBack() = supportFragmentManager.popBackStack()
 
+    override fun closeApp() = finish()
+
 }

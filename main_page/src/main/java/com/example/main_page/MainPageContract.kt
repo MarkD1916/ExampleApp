@@ -5,14 +5,13 @@ import com.example.core.FeatureActive
 
 interface MainPageAction {
 
-
     fun goToAuthFeature()
 
 }
 
 abstract class MainPageContract : Fragment() {
 
-    val isFeatureActive: Boolean = FeatureActive.IS_MAIN_PAGE_FEATURE_ACTIVE
+    open val isFeatureActive: Boolean = FeatureActive.IS_MAIN_PAGE_FEATURE_ACTIVE
 
     abstract fun block(isFeatureActive: Boolean)
 

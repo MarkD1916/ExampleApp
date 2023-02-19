@@ -13,9 +13,7 @@ interface AuthPageAction {
 abstract class AuthPageContract : Fragment() {
 
     open val isFeatureActive: Boolean = FeatureActive.IS_AUTH_PAGE_FEATURE_ACTIVE
-
     abstract fun block(isFeatureActive: Boolean)
-
     abstract fun observeBlockingEvent()
 
 }

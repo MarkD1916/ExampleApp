@@ -52,11 +52,10 @@ class AuthScreen : AuthPageContract(), AuthScreenInterface, AuthComponentProvide
         observeBlockingEvent()
     }
 
-    override fun observeBlockingEvent() {
+    override fun observeBlockingEvent() =
         viewModel.blockScreenMutableLiveData.observe(viewLifecycleOwner) {
             restrictionBottomSheet.show(this.childFragmentManager, RestrictionFeatureContract.TAG)
         }
-    }
 
     override fun provideAuthScreenComponent(): AuthScreenComponent {
         if (!this::authScreenComponent.isInitialized) {

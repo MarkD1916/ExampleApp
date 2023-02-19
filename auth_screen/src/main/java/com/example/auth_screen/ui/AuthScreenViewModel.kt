@@ -10,8 +10,6 @@ class AuthScreenViewModel @Inject constructor(): ViewModel() {
     private val _blockScreenMutableLiveData = MutableLiveData<Boolean>()
     val blockScreenMutableLiveData: LiveData<Boolean> = _blockScreenMutableLiveData
 
-    fun block(isFeatureActive: Boolean) {
-        _blockScreenMutableLiveData.postValue(isFeatureActive)
-    }
+    fun block(isFeatureActive: Boolean) = _blockScreenMutableLiveData.postValue(isFeatureActive)
 
 }

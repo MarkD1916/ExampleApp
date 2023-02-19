@@ -12,7 +12,6 @@ interface MainPageAction {
 abstract class MainPageContract : Fragment() {
 
     open val isFeatureActive: Boolean = FeatureActive.IS_MAIN_PAGE_FEATURE_ACTIVE
-
     abstract fun block(isFeatureActive: Boolean)
 
 }

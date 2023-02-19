@@ -16,4 +16,6 @@ abstract class AuthPageContract : Fragment() {
 
     abstract fun block(isFeatureActive: Boolean)
 
+    abstract fun observeBlockingEvent()
+
 }

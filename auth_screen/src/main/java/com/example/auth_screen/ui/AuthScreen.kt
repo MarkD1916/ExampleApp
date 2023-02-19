@@ -49,7 +49,10 @@ class AuthScreen : AuthPageContract(), AuthScreenInterface, AuthComponentProvide
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (savedInstanceState == null) block(isFeatureActive)
+        observeBlockingEvent()
+    }
 
+    override fun observeBlockingEvent() {
         viewModel.blockScreenMutableLiveData.observe(viewLifecycleOwner) {
             restrictionBottomSheet.show(this.childFragmentManager, RestrictionFeatureContract.TAG)
         }
@@ -63,6 +66,7 @@ class AuthScreen : AuthPageContract(), AuthScreenInterface, AuthComponentProvide
                 .coreComponent(CoreInjectHelper.provideCoreComponent(requireActivity().application))
                 .build()
         }
+
         return authScreenComponent
     }
 

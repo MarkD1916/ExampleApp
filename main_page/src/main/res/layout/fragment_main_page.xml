@@ -6,7 +6,7 @@
     android:orientation="vertical"
     tools:context=".ui.MainPageFragment">
 
-    <com.example.core.ui.NavigationLayoutView
+    <com.example.core.ui.views.navigation.NavigationLayoutView
         android:id = "@+id/nav_button"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.example.core.ui.views
+package com.example.core.ui.listeners
 
 import android.animation.Animator
 

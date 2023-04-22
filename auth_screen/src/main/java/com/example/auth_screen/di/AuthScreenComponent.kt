@@ -1,6 +1,5 @@
 package com.example.auth_screen.di
 
-import androidx.activity.ComponentActivity
 import com.example.auth_screen.AuthPageContract
 import com.example.auth_screen.ui.AuthScreenViewModel
 import com.example.core.di.CoreComponent

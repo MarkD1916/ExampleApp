@@ -4,5 +4,6 @@ object FeatureActive {
 
     const val IS_MAIN_PAGE_FEATURE_ACTIVE = true
     const val IS_AUTH_PAGE_FEATURE_ACTIVE = false
+    const val IS_SEARCH_PAGE_FEATURE_ACTIVE = true
 
 }

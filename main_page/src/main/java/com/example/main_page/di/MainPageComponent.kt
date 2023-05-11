@@ -1,10 +1,13 @@
 package com.example.main_page.di
 
-import com.example.core.di.CoreComponent
+import com.example.main_page.ui.MainPageViewModel
 import dagger.Component
 
 
-@Component(dependencies = [CoreComponent::class])
+@Component
 @MainPageScope
 interface MainPageComponent {
+
+    fun getMainPageViewModel(): MainPageViewModel
+
 }

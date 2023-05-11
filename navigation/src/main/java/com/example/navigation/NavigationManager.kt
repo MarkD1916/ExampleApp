@@ -15,5 +15,7 @@ interface InstanceOfFragment
 
 enum class Routes {
     MAIN_PAGE_ROUTE,
-    AUTH_SCREEN
+    AUTH_SCREEN,
+    SEARCH_SCREEN,
+    UNKNOWN
 }

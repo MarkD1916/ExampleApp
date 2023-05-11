@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_nav_title">Error!</string>
+    <string name="search_screen_nav_title">Go to the search screen</string>
+</resources>

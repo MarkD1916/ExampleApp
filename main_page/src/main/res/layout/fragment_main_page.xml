@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ui.MainPageFragment">
 
@@ -12,8 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.example.core.ui.views.navigation.NavigationLayoutView
+        android:id = "@+id/nav_button_search_word"
+        android:layout_marginTop="20dp"
+        app:nav_title="@string/search_screen_nav_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
 
 </LinearLayout>

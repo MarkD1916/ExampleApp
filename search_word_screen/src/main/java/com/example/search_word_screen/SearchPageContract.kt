@@ -1,20 +1,18 @@
-package com.example.main_page
+package com.example.search_word_screen
 
 import androidx.annotation.StringRes
 import androidx.core.view.allViews
 import androidx.fragment.app.Fragment
 import com.example.core.FeatureActive
-import com.example.navigation.Routes
 
-interface MainPageAction {
+interface SearchPageAction {
 
-    fun goTo(route: Routes)
 
 }
 
-abstract class MainPageContract : Fragment() {
+abstract class SearchPageContract : Fragment() {
 
-    open val isFeatureActive: Boolean = FeatureActive.IS_MAIN_PAGE_FEATURE_ACTIVE
+    open val isFeatureActive: Boolean = FeatureActive.IS_SEARCH_PAGE_FEATURE_ACTIVE
     abstract fun block(isFeatureActive: Boolean)
     abstract fun initViews()
 
@@ -26,13 +24,13 @@ abstract class MainPageContract : Fragment() {
 
 }
 
-fun MainPageContract.setupFeature() {
+fun SearchPageContract.setupFeature() {
     try {
         block(isFeatureActive)
         checkAllViewsNotNull()
         initViews()
     } catch (e: Exception) {
         e.printStackTrace()
-        onError(R.string.unexpected_error)
+        onError(com.google.android.material.R.string.error_icon_content_description)
     }
 }

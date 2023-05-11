@@ -40,5 +40,6 @@ dependencies {
 
     implementation project(':auth_screen')
     implementation project(':main_page')
+    implementation project(':search_word_screen')
     implementation project(':navigation')
 }

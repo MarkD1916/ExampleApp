@@ -1,4 +1,4 @@
-package com.example.core.ui
+package com.example.core.ui.ext
 
 import android.animation.Animator
 import android.animation.ObjectAnimator

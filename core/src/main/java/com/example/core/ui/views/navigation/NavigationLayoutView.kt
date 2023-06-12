@@ -3,6 +3,7 @@ package com.example.core.ui.views.navigation
 import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
+import android.util.DisplayMetrics
 import android.view.View
 import android.widget.TextView
 import androidx.annotation.StringRes
@@ -31,7 +32,6 @@ class NavigationLayoutView : AnimatedClickableView {
         val navigationViewTitle = findViewById<TextView>(R.id.navigation_title)
         navigationViewTitle.text = title
     }
-
 
     fun setTitle(@StringRes title: Int) {
         val navigationViewTitle = findViewById<TextView>(R.id.navigation_title)

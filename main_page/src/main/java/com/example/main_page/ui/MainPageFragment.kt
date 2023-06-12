@@ -1,11 +1,13 @@
 package com.example.main_page.ui
 
+import android.content.Context
 import android.os.Bundle
-import android.util.Log
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.core.di.CoreInjectHelper
+import android.view.animation.TranslateAnimation
+import androidx.lifecycle.ViewModelProvider
 import com.example.core.navigationManager
 import com.example.core.ui.UiConstants.CLICKABLE_SCALE_DEGREE
 import com.example.core.ui.ext.onClickWithScaleAnimate
@@ -22,6 +24,7 @@ import com.example.navigation.InstanceOfFragment
 import com.example.navigation.Routes
 import kotlinx.coroutines.*
 
+
 interface MainScreenInterface : InstanceOfFragment {
     companion object {
         @JvmStatic
@@ -32,10 +35,15 @@ interface MainScreenInterface : InstanceOfFragment {
 class MainPageFragment : MainPageContract(), MainScreenInterface, MainPageAction,
     MainPageComponentProvider {
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        println("run: ${Thread.currentThread().name}, ${Thread.activeCount()}")
+    }
+
     private var navigateToAuthScreenButton: NavigationLayoutView? = null
     private var navigateToSearchScreenButton: NavigationLayoutView? = null
-    private val coroutineScope = CoroutineScope(Dispatchers.Main)
-
+    private lateinit var coroutineScope: CoroutineScope
+    val a: ViewModelProvider? = null
     private lateinit var mainPageComponent: MainPageComponent
     private val viewModel: MainPageViewModel by lazy {
         mainPageComponent.getMainPageViewModel()
@@ -49,7 +57,10 @@ class MainPageFragment : MainPageContract(), MainScreenInterface, MainPageAction
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = inflater.inflate(R.layout.fragment_main_page, container, false)
+    ): View {
+        coroutineScope = CoroutineScope(Dispatchers.Main)
+        return inflater.inflate(R.layout.fragment_main_page, container, false)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -66,16 +77,18 @@ class MainPageFragment : MainPageContract(), MainScreenInterface, MainPageAction
     }
 
     override fun initViews() {
-        navigateToAuthScreenButton = view?.findViewById(R.id.nav_button)
-        navigateToAuthScreenButton?.onClickWithScaleAnimate(
-            scaleDegree = CLICKABLE_SCALE_DEGREE,
-            onClick = { viewModel.navigate(Routes.AUTH_SCREEN) }
-        )
-        navigateToSearchScreenButton = view?.findViewById(R.id.nav_button_search_word)
-        navigateToSearchScreenButton?.onClickWithScaleAnimate(
-            scaleDegree = CLICKABLE_SCALE_DEGREE,
-            onClick = { viewModel.navigate(Routes.SEARCH_SCREEN) }
-        )
+        state.apply {
+            navigateToAuthScreenButton?.view = view?.findViewById(R.id.nav_button)
+            navigateToAuthScreenButton?.view?.onClickWithScaleAnimate(
+                scaleDegree = CLICKABLE_SCALE_DEGREE,
+                onClick = { viewModel.navigate(Routes.AUTH_SCREEN) }
+            )
+            navigateToSearchScreenButton?.view = view?.findViewById(R.id.nav_button_search_word)
+            navigateToSearchScreenButton?.view?.onClickWithScaleAnimate(
+                scaleDegree = CLICKABLE_SCALE_DEGREE,
+                onClick = { viewModel.navigate(Routes.SEARCH_SCREEN) }
+            )
+        }
     }
 
     override fun block(isFeatureActive: Boolean) {

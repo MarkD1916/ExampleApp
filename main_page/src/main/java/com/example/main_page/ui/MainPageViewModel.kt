@@ -3,6 +3,8 @@ package com.example.main_page.ui
 import com.example.core.ui.base.BaseAction
 import com.example.core.ui.base.BaseViewModel
 import com.example.navigation.Routes
+import kotlinx.coroutines.channels.consume
+import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -14,7 +16,6 @@ class MainPageViewModel @Inject constructor(): BaseViewModel() {
         coroutineScope.launch {
             event.send(Navigate(rote))
         }
-
     }
 
 }

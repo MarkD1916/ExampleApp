@@ -2,7 +2,6 @@ package com.example.custompagingwithsomedatasource
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.FragmentManager
 import com.example.processor.NavigationEndPoint
 import com.example.navigation.NavigationManager
 import com.example.navigation.Routes
@@ -27,7 +26,17 @@ class MainActivity : AppCompatActivity(), NavigationManager {
         val fragment = NavigationEndPoint.getFragmentByRoute(MAIN_PAGE_ROUTE)
         supportFragmentManager
             .beginTransaction()
-            .add(R.id.fragment_container_main_activity, fragment)
+            .add(R.id.fragment_container_main_activity, fragment, MAIN_PAGE_ROUTE.name)
+            .commit()
+    }
+
+    override fun addFragmentWithClearVm(route: Routes, tage: String) {
+        val fragment = NavigationEndPoint.getFragmentByRoute(route)
+        supportFragmentManager.findFragmentByTag(tage)?.viewModelStore?.clear()
+        supportFragmentManager
+            .beginTransaction()
+            .addToBackStack("tag")
+            .replace(R.id.fragment_container_main_activity, fragment, route.name)
             .commit()
     }
 
@@ -38,7 +47,6 @@ class MainActivity : AppCompatActivity(), NavigationManager {
             .addToBackStack("tag")
             .replace(R.id.fragment_container_main_activity, fragment)
             .commit()
-
     }
 
     override fun goToAppInitialScreen() {

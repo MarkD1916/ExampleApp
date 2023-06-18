@@ -2,15 +2,15 @@ package com.example.main_page.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.util.DisplayMetrics
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.TranslateAnimation
 import androidx.lifecycle.ViewModelProvider
 import com.example.core.navigationManager
 import com.example.core.ui.UiConstants.CLICKABLE_SCALE_DEGREE
 import com.example.core.ui.ext.onClickWithScaleAnimate
+import com.example.core.ui.ext.viewModelWithFactory
 import com.example.core.ui.views.navigation.NavigationLayoutView
 import com.example.feature_blocker.RestrictionFeatureContract
 import com.example.main_page.MainPageAction
@@ -22,7 +22,10 @@ import com.example.main_page.di.MainPageComponentProvider
 import com.example.main_page.setupFeature
 import com.example.navigation.InstanceOfFragment
 import com.example.navigation.Routes
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 
 
 interface MainScreenInterface : InstanceOfFragment {
@@ -35,30 +38,25 @@ interface MainScreenInterface : InstanceOfFragment {
 class MainPageFragment : MainPageContract(), MainScreenInterface, MainPageAction,
     MainPageComponentProvider {
 
+    private lateinit var viewModel: MainPageViewModel
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        println("run: ${Thread.currentThread().name}, ${Thread.activeCount()}")
-    }
-
-    private var navigateToAuthScreenButton: NavigationLayoutView? = null
-    private var navigateToSearchScreenButton: NavigationLayoutView? = null
-    private lateinit var coroutineScope: CoroutineScope
-    val a: ViewModelProvider? = null
-    private lateinit var mainPageComponent: MainPageComponent
-    private val viewModel: MainPageViewModel by lazy {
-        mainPageComponent.getMainPageViewModel()
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         provideMainPageComponent()
+
     }
+
+    private lateinit var coroutineScope: CoroutineScope
+    private lateinit var mainPageComponent: MainPageComponent
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         coroutineScope = CoroutineScope(Dispatchers.Main)
+
+        viewModel =  viewModelWithFactory(mainPageComponent.getMainPageViewModel().create(50))
+        Log.d("LOL", "onCreateView: ${viewModel.hashCode()}, ${viewModel.test()}")
         return inflater.inflate(R.layout.fragment_main_page, container, false)
     }
 
@@ -101,7 +99,9 @@ class MainPageFragment : MainPageContract(), MainScreenInterface, MainPageAction
 
     override fun onError(message: Int?) = block(false)
 
-    override fun goTo(route: Routes) = navigationManager().addFragment(route)
+    override fun goTo(route: Routes) {
+        navigationManager().addFragmentWithClearVm(route, TAG)
+    }
 
     override fun provideMainPageComponent() {
         if (!this::mainPageComponent.isInitialized) {

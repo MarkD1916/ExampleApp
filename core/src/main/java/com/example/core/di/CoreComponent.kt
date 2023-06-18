@@ -3,7 +3,6 @@ package com.example.core.di
 import android.app.Application
 import android.content.Context
 import com.example.core.DictionaryDatabase
-import com.example.core.ui.base.BaseViewModel
 import dagger.Component
 import retrofit2.Retrofit
 import javax.inject.Singleton

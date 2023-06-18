@@ -4,6 +4,7 @@ interface NavigationManager {
 
     fun replaceFragment(route: Routes)
     fun addFragment(route: Routes)
+    fun addFragmentWithClearVm(route: Routes, tage: String)
     fun goToAppInitialScreen()
     fun goToFeatureInitialScreen(featureInitialScreen: Routes)
     fun initFragment()

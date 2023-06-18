@@ -4,10 +4,10 @@ import com.example.main_page.ui.MainPageViewModel
 import dagger.Component
 
 
-@Component
+@Component(modules = [MainPageModule::class])
 @MainPageScope
 interface MainPageComponent {
 
-    fun getMainPageViewModel(): MainPageViewModel
+    fun getMainPageViewModel(): MainPageViewModel.MainPageViewModelFactory
 
 }

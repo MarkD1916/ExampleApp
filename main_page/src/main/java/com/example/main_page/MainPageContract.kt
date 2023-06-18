@@ -22,7 +22,7 @@ data class MainPageState(
 ) : BaseState.FragmentUI
 
 abstract class MainPageContract : Fragment() {
-
+    val TAG = Routes.MAIN_PAGE_ROUTE.name
     open val isFeatureActive: Boolean = FeatureActive.IS_MAIN_PAGE_FEATURE_ACTIVE
     abstract fun block(isFeatureActive: Boolean)
     abstract fun initViews()

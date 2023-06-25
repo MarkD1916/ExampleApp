@@ -1,6 +1,5 @@
 package com.example.search_word_screen.ui
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,8 +12,6 @@ import com.example.search_word_screen.R
 import com.example.search_word_screen.SearchPageAction
 import com.example.search_word_screen.SearchPageContract
 import com.example.search_word_screen.setupFeature
-import java.io.PipedReader
-import java.io.PipedWriter
 
 interface SearchScreenInterface : InstanceOfFragment {
     companion object {
@@ -24,13 +21,6 @@ interface SearchScreenInterface : InstanceOfFragment {
 }
 
 class SearchPageFragment : SearchPageContract(), SearchScreenInterface, SearchPageAction {
-
-
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        println("run: ${Thread.currentThread().name}, ${Thread.activeCount()}")
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

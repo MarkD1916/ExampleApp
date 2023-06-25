@@ -8,11 +8,8 @@ import com.example.navigation.Routes
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 data class Navigate(val route: Routes = Routes.UNKNOWN) : BaseAction
 

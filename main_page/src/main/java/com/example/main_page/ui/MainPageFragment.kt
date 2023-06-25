@@ -6,12 +6,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import com.example.core.navigationManager
 import com.example.core.ui.UiConstants.CLICKABLE_SCALE_DEGREE
 import com.example.core.ui.ext.onClickWithScaleAnimate
 import com.example.core.ui.ext.viewModelWithFactory
-import com.example.core.ui.views.navigation.NavigationLayoutView
 import com.example.feature_blocker.RestrictionFeatureContract
 import com.example.main_page.MainPageAction
 import com.example.main_page.MainPageContract
@@ -26,7 +24,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
-
 
 interface MainScreenInterface : InstanceOfFragment {
     companion object {
@@ -43,7 +40,6 @@ class MainPageFragment : MainPageContract(), MainScreenInterface, MainPageAction
     override fun onAttach(context: Context) {
         super.onAttach(context)
         provideMainPageComponent()
-
     }
 
     private lateinit var coroutineScope: CoroutineScope
